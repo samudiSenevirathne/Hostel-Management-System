@@ -1,16 +1,34 @@
 package lk.ijse.hostel.hibernate.layered;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import lk.ijse.hostel.hibernate.layered.controller.WelcomeFormController;
+
+import java.io.IOException;
 
 public class AppInitializer extends Application {
 
+
+
     public static void main(String[] args) {
         launch(args);
+
     }
 
     @Override
-    public void start(Stage primaryStage) {
-
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/hostel/hibernate/layered/view/WelcomeForm.fxml"));
+        Scene scene = new Scene(loader.load());
+        scene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.centerOnScreen();
+        primaryStage.setResizable(false);
+        ((WelcomeFormController) loader.getController()).inti(primaryStage);
+        primaryStage.show();
     }
 }
